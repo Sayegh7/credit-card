@@ -259,6 +259,12 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
     );
   }
 
+  String addSpaces(String cardNumber) {
+    return cardNumber
+        .splitMapJoin(RegExp('r\d{4}'), onMatch: (Match m) => '${m.group(0)} ')
+        .trimRight();
+  }
+
   ///
   /// Builds a front container containing
   /// Card number, Exp. year and Card holder name
@@ -316,7 +322,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
                   child: Text(
                     widget.cardNumber.isEmpty || widget.cardNumber == null
                         ? 'XXXX XXXX XXXX XXXX'
-                        : widget.cardNumber,
+                        : addSpaces(widget.cardNumber),
                     style: widget.textStyle ?? defaultTextStyle,
                   ),
                 ),
