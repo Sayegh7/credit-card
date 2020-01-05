@@ -13,6 +13,7 @@ class CreditCardWidget extends StatefulWidget {
     this.animationDuration = const Duration(milliseconds: 500),
     this.height,
     this.width,
+    this.randomCardBg = false,
     this.textStyle,
     this.cardBgColor = const Color(0xff1b447b),
   })  : assert(cardNumber != null),
@@ -23,6 +24,7 @@ class CreditCardWidget extends StatefulWidget {
   final String expiryDate;
   final String cardHolderName;
   final String cvvCode;
+  final bool randomCardBg;
   final TextStyle textStyle;
   final Color cardBgColor;
   final bool showBackView;
@@ -170,7 +172,10 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
           (orientation == Orientation.portrait ? height / 4 : height / 2),
       child: Stack(
         children: <Widget>[
-          getRandomBackground(widget.height, widget.width),
+          Offstage(
+            offstage: !widget.randomCardBg,
+            child: getRandomBackground(widget.height, widget.width),
+          ),
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
