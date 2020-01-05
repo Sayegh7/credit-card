@@ -261,7 +261,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
 
   String addSpaces(String cardNumber) {
     return cardNumber
-        .splitMapJoin(RegExp('r\d{4}'), onMatch: (Match m) => '${m.group(0)} ')
+        .splitMapJoin(RegExp(r'\d{4}'), onMatch: (Match m) => '${m.group(0)} ')
         .trimRight();
   }
 
